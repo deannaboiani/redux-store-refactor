@@ -10,9 +10,15 @@ import {
   TOGGLE_CART
 } from "./actions";
 
+const globalState = {
+  products:[],
+  categories:[],
+  cart:[],
+  cartOpen: false,
+  currentCategory: ""
+}
 
-
-export const reducers = (state, action) => {
+export const reducers = (state = globalState, action) => {
   switch (action.type) {
     case UPDATE_PRODUCTS:
       return {
