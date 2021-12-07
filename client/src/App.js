@@ -8,22 +8,18 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Provider } from 'react-redux';
-import store from './utils/store';
-
+import Store from './utils/Store';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
-// import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
-
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -33,18 +29,16 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
-
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <Provider store={store}>
+          <Provider store = {Store}>
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
@@ -61,5 +55,4 @@ function App() {
     </ApolloProvider>
   );
 }
-
 export default App;

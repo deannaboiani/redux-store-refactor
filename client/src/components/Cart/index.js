@@ -16,7 +16,7 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state)
+  const state = useSelector((state) => state)
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   // TODO: Add a comment describing the functionality of the useEffect hook in this instance
